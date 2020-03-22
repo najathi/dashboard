@@ -30,8 +30,8 @@ class CreateEmployeesTable extends Migration
             $table->integer('district_id');
             $table->integer('division_id');
             $table->string('gn_division');
-            $table->integer('gov_front_image');
-            $table->integer('gov_back_image');
+            $table->integer('gov_f_photo');
+            $table->integer('gov_b_photo');
             $table->string('sim_no')->nullable();
             $table->string('sim_serial_no')->nullable();
             $table->string('parent_code')->nullable();

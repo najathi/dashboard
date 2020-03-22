@@ -7,23 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     protected $fillable = [
-        'first_name','last_name','gender','civil_status','dob','address_1','address_2','nic','passport_photo','mobile_no','email','designation_id',
-        'district_id','division_id','gn_division','gov_front_image','gov_back_image','sim_no','sim_serial_no','parent_code'
+        'first_name', 'last_name', 'gender', 'civil_status', 'dob', 'address_1', 'address_2', 'nic', 'passport_photo', 'mobile_no', 'email', 'designation_id',
+        'district_id', 'division_id', 'gn_division', 'gov_f_photo', 'gov_b_photo', 'sim_no', 'sim_serial_no', 'parent_code'
     ];
 
-    public function passportPhoto()
+    public function passport_photo()
     {
-        return $this->hasMany('App\Photo', 'passport_photo');
+        return $this->belongsTo('App\Photo', 'passport_photo');
     }
 
-    public function govFPhoto()
+    public function gov_f_photo()
     {
-        return $this->hasMany('App\Photo', 'gov_front_image');
+        return $this->belongsTo('App\Photo', 'gov_f_photo');
     }
 
-    public function govBPhoto()
+    public function gov_b_photo()
     {
-        return $this->hasMany('App\Photo', 'gov_back_image');
+        return $this->belongsTo('App\Photo', 'gov_b_photo');
     }
 
     public function designation()
@@ -43,3 +43,42 @@ class Employee extends Model
 
 
 }
+
+/*
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Employee extends Model
+{
+    protected $fillable = [
+        'first_name', 'last_name', 'gender', 'civil_status', 'dob', 'address_1', 'address_2', 'nic', 'passport_photo', 'mobile_no', 'email', 'designation_id',
+        'district_id', 'division_id', 'gn_division', 'gov_f_photo', 'gov_b_photo', 'sim_no', 'sim_serial_no', 'parent_code'
+    ];
+
+    public function designation()
+    {
+        return $this->belongsTo('App\Designation');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo('App\District');
+    }
+
+    public function division()
+    {
+        return $this->belongsTo('App\Division');
+    }
+
+    protected $upload = '/media/uploads/';
+
+    //accessor
+    public function getFileAttribute($photo)
+    {
+        return $this->upload . $photo;
+    }
+
+
+}*/
+

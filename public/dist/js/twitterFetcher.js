@@ -201,16 +201,16 @@
         return;
       }
 
-      // Remove emoji and summary card images.
+      // Remove emoji and summary card uploads.
       if(!useEmoji){
         data.body = data.body.replace(/(<img[^c]*class="Emoji[^>]*>)|(<img[^c]*class="u-block[^>]*>)/g, '');
       }
 
-      // Remove display images.
+      // Remove display uploads.
       if (!showImages) {
         data.body = data.body.replace(/(<img[^c]*class="NaturalImage-image[^>]*>|(<img[^c]*class="CroppedImage-image[^>]*>))/g, '');
       }
-      // Remove avatar images.
+      // Remove avatar uploads.
       if (!printUser) {
         data.body = data.body.replace(/(<img[^c]*class="Avatar"[^>]*>)/g, '');
       }

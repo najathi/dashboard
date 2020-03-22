@@ -9,7 +9,7 @@ class Photo extends Model
     // mass Assignment
     protected $fillable = ['file'];
 
-    protected $upload = '/images/profile/';
+    protected $upload = '/media/uploads/';
 
     //accessor
     public function getFileAttribute($photo)

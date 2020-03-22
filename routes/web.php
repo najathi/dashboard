@@ -18,8 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/forms/employee', 'EmployeesController@create');
-
 Auth::routes();
 
 Route::get('/logout', 'Auth\LoginController@logout');
@@ -46,4 +44,7 @@ Route::get('/json/district/{id}/divisions', 'EmployeesController@divisions');
 
 Route::resource('/forms/employee', 'EmployeesController');
 
-Route::get('/forms/employee/showInput', 'EmployeesController@showInput');
+//Route::resource('/forms/employee', 'EmployeesController', ['names' => [
+//    'create' => 'forms.employee',
+//    'store' => 'forms.employee.store'
+//]]);

@@ -7,6 +7,7 @@ use App\District;
 use App\Division;
 use App\Employee;
 use App\Photo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
@@ -38,7 +39,7 @@ class EmployeesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function store(Request $request)
     {
@@ -46,30 +47,31 @@ class EmployeesController extends Controller
 
         $input = $request->all();
 
-        $passport_img = $request->file('passport_photo');
-        $gov_front_img = $request->file('gov_front_image');
-        $gov_back_img = $request->file('gov_back_image');
+        $passport_photo = $request->file('passport_photo');
+        $gov_f_photo = $request->file('gov_f_photo');
+        $gov_b_photo = $request->file('gov_b_photo');
 
-        if ($passport_img && $gov_front_img && $gov_back_img) {
-            $passport_photo = time() . $passport_img->getClientOriginalName();
-            $gov_front_image = time() . $gov_front_img->getClientOriginalName();
-            $gov_back_image = time() . $gov_back_img->getClientOriginalName();
+        if ($passport_photo || $gov_f_photo || $gov_b_photo) {
+            $passport_photo_name = time() . $passport_photo->getClientOriginalName();
+            $gov_f_photo_name = time() . $gov_f_photo->getClientOriginalName();
+            $gov_b_photo_name = time() . $gov_b_photo->getClientOriginalName();
 
-            $passport_photo->move('images/gov_img', $passport_photo);
-            $gov_front_image->move('images/gov_img', $gov_front_image);
-            $gov_back_image->move('images/passport_img', $gov_back_image);
+            $passport_photo->move('media/uploads/', $passport_photo_name);
+            $gov_f_photo->move('media/uploads/', $gov_f_photo_name);
+            $gov_b_photo->move('media/uploads/', $gov_b_photo_name);
 
-            $photo_passport = Photo::create(['file' => $passport_photo]);
-            $photo_gov_front = Photo::create(['file' => $gov_front_image]);
-            $photo_gov_back = Photo::create(['file' => $gov_back_image]);
+            $passport = Photo::create(['file' => $passport_photo_name]);
+            $gov_front = Photo::create(['file' => $gov_f_photo_name]);
+            $gov_back = Photo::create(['file' => $gov_b_photo_name]);
 
-            $input['passport_photo'] = $photo_passport->id;
-            $input['gov_front_image'] = $photo_gov_front->id;
-            $input['gov_back_image'] = $photo_gov_back->id;
+            $input['passport_photo'] = $passport->id;
+            $input['gov_f_photo'] = $gov_front->id;
+            $input['gov_b_photo'] = $gov_back->id;
         }
         Employee::create($input);
 
-        return redirect(route('forms.employee'))->with('success', 'The User has been created');
+        return redirect(route('employee.create'))->with('success', 'The User has been created');
+
     }
 
     /**

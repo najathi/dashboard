@@ -306,7 +306,7 @@
 
 #mmc-chat.inbox .box .box-body .options .video-cam {
 /*
-    background: url("../../images/video-cam.png") no-repeat;
+    background: url("../../uploads/video-cam.png") no-repeat;
     height: 18px;
     width: 32px;
 */
@@ -631,13 +631,13 @@ font-size: 12px;
 }
 
 #mmc-chat .chat-box ul.boxs li.box .box-header .tools .collapse {
-    /*    background: url("../../images/minimize.png") no-repeat;*/
+    /*    background: url("../../uploads/minimize.png") no-repeat;*/
     padding-top: 0;
     display: inline;
 }
 
 #mmc-chat .chat-box ul.boxs li.box .box-header .tools .maximize {
-    /*    background: url("../../images/maximize.png") no-repeat;*/
+    /*    background: url("../../uploads/maximize.png") no-repeat;*/
 }
 
 #mmc-chat .chat-box ul.boxs li.box .box-header .tools .close {
@@ -662,7 +662,7 @@ font-size: 12px;
 
 #mmc-chat .chat-box ul.boxs li.box .box-footer .item {
     float: left;
-    
+
 }
 
 #mmc-chat .chat-box ul.boxs li.box .box-footer .icons .smile-ico {
@@ -780,7 +780,7 @@ z-index: 10;
 
 #mmc-chat .chat-box ul.boxs li.box .box-body .options .video-cam {
 /*
-    background: url("../../images/video-cam.png") no-repeat;
+    background: url("../../uploads/video-cam.png") no-repeat;
     height: 18px;
     width: 32px;
     margin-top: 2px;
@@ -789,7 +789,7 @@ z-index: 10;
 
 #mmc-chat .chat-box ul.boxs li.box .box-body .options .person-add {
 /*
-    background: url("../../images/chat-person-add.png") no-repeat;
+    background: url("../../uploads/chat-person-add.png") no-repeat;
     height: 24px;
     width: 29px;
 */

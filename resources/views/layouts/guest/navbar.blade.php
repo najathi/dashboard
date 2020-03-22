@@ -1,20 +1,20 @@
 <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar hk-navbar-alt">
     <a class="navbar-toggle-btn nav-link-hover navbar-toggler" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarCollapseAlt" aria-controls="navbarCollapseAlt" aria-expanded="false" aria-label="Toggle navigation"><span class="feather-icon"><i data-feather="menu"></i></span></a>
     <a class="navbar-brand text-purple" href="dashboard1.html">
-        Mavrin
+        SLBI
     </a>
     <div class="collapse navbar-collapse" id="navbarCollapseAlt">
         <ul class="navbar-nav">
             <li class="nav-item dropdown show-on-hover active">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dashboard
+                    Forms
                 </a>
                 <div class="dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                    <a class="dropdown-item active" href="dashboard1.html">CRM</a>
-                    <a class="dropdown-item" href="dashboard2.html">Project</a>
-                    <a class="dropdown-item" href="dashboard3.html">Statistics</a>
-                    <a class="dropdown-item" href="dashboard4.html">classic</a>
-                    <a class="dropdown-item" href="dashboard5.html">Analytics</a>
+                    <a class="dropdown-item active" href="#">Employee</a>
+                    <a class="dropdown-item" href="#">Manufacturer</a>
+                    <a class="dropdown-item" href="#">Statistics</a>
+                    <a class="dropdown-item" href="#">classic</a>
+                    <a class="dropdown-item" href="#">Analytics</a>
                 </div>
             </li>
             <li class="nav-item dropdown show-on-hover">

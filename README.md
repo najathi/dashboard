@@ -36,7 +36,7 @@ SLBI is accessible, powerful, and provides tools required for large, robust appl
 - [Optional]: Seed the database<br/>
 **php artisan db:seed**
 
-## If you have database seed problem
+## If you have any problem with seed the database
 
 - you need to run in your terminal: <br/>
 **composer dump-autoload**

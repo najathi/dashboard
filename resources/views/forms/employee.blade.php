@@ -21,47 +21,54 @@
                 <div class="row">
                     <div class="col-sm">
 
+                        @include('includes.user_form_error')
+
                         {!! Form::open(['method' => 'POST', 'route' => 'employee.store', 'files'=> true]) !!}
 
 
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                {!! Form::label('first_name', 'First Name ') !!}
-                                {!! Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => 'First Name']) !!}
+                                {!! Form::label('first_name', 'First Name ') !!} <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
+                                {!! Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => 'First Name', 'required' => 'required', 'maxlength' => '40']) !!}
                             </div>
                             <div class="col-md-6 form-group">
-                                {!! Form::label('last_name', 'Last Name ') !!}
-                                {!! Form::text('last_name', null, ['class' => 'form-control', 'placeholder' => 'Last Name']) !!}
+                                {!! Form::label('last_name', 'Last Name ') !!} <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
+                                {!! Form::text('last_name', null, ['class' => 'form-control', 'placeholder' => 'Last Name', 'required' => 'required', 'maxlength' => '40']) !!}
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                {!! Form::label('email', 'E-Mail ') !!}
+                                {!! Form::label('email', 'E-Mail ') !!} <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="icon-envelope"></i></span>
                                     </div>
-                                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email Address']) !!}
+                                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email Address', 'required' => 'required']) !!}
                                 </div>
                             </div>
                             <div class="col-md-6 form-group">
-                                {!! Form::label('designation_id', 'Designation ') !!}
+                                {!! Form::label('designation_id', 'Designation ') !!} <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
                                 <div class="input-group">
-                                    {!! Form::select('designation_id', ['' => 'Choose Option']  + $designations, null , ['class' => 'form-control']) !!}
+                                    {!! Form::select('designation_id', ['' => 'Choose Option']  + $designations, null , ['class' => 'form-control', 'required' => 'required']) !!}
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('gender', 'Gender ', ['class' => 'control-label mb-10']) }}
+                            {{ Form::label('gender', 'Gender ', ['class' => 'control-label mb-10']) }} <span
+                                style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
                             <div>
                                 <div class="custom-control custom-radio mb-5">
-                                    {{Form::radio('gender', 'M' , false, ['id' => 'male', 'class' => 'custom-control-input']) }}
+                                    {{Form::radio('gender', 'M' , false, ['id' => 'male', 'class' => 'custom-control-input', 'required' => 'required']) }}
                                     {{ Form::label('male', 'Male ', ['class' => 'custom-control-label']) }}
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    {!! Form::radio('gender', 'F' , false, ['id' => 'female', 'class' => 'custom-control-input']) !!}
+                                    {!! Form::radio('gender', 'F' , false, ['id' => 'female', 'class' => 'custom-control-input', 'required' => 'required']) !!}
                                     {!! Form::label('female', 'Female ', ['class' => 'custom-control-label']) !!}
                                 </div>
                             </div>
@@ -69,80 +76,100 @@
 
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                {!! Form::label('civil_status', 'Civil Status ', ['class' => 'input_tags']) !!}
-                                {!! Form::select('civil_status', array('M' => 'Married', 'S' => 'Single') , 'S', ['class' => 'form-control']) !!}
+                                {!! Form::label('civil_status', 'Civil Status ', ['class' => 'input_tags']) !!} <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
+                                {!! Form::select('civil_status', array('M' => 'Married', 'S' => 'Single') , 'S', ['class' => 'form-control', 'required' => 'required']) !!}
                             </div>
                             <div class="col-md-6 form-group">
-                                {!! Form::label('dob', 'Date of Birth ', ['class' => 'input_tags']) !!}
-                                {!! Form::date('dob', null, ['class' => 'form-control', 'placeholder' => '', 'max' => '2002-12-31', 'min' => '1950-01-01']) !!}
+                                {!! Form::label('dob', 'Date of Birth ', ['class' => 'input_tags']) !!} <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
+                                {!! Form::date('dob', null, ['class' => 'form-control', 'placeholder' => '', 'max' => '2002-12-31', 'min' => '1950-01-01', 'required' => 'required']) !!}
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                {!! Form::label('address_1', 'Address Line 1') !!}
-                                {!! Form::text('address_1', null, ['class' => 'form-control', 'placeholder' => 'Address Line 2']) !!}
+                                {!! Form::label('address_1', 'Address Line 1') !!} <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
+                                {!! Form::text('address_1', null, ['class' => 'form-control', 'placeholder' => 'Address Line 1', 'required' => 'required', 'maxlength' => '50']) !!}
                             </div>
                             <div class="col-md-6 form-group">
                                 {!! Form::label('address_2', 'Address Line 2 (Optional)') !!}
-                                {!! Form::text('address_2', null, ['class' => 'form-control', 'placeholder' => 'Address Line 2',]) !!}
+                                {!! Form::text('address_2', null, ['class' => 'form-control', 'placeholder' => 'Address Line 2', 'maxlength' => '50']) !!}
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                {!! Form::label('nic', 'NIC No.') !!}
-                                {!! Form::text('nic', null, ['class' => 'form-control', 'placeholder' => 'NIC No.']) !!}
+                                {!! Form::label('nic', 'NIC No.') !!} <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
+                                {!! Form::text('nic', null, ['class' => 'form-control', 'placeholder' => 'NIC No.', 'required' => 'required', 'maxlength' => '12']) !!}
                             </div>
                             <div class="col-md-6 form-group">
-                                {!! Form::label('mobile_no', 'Mobile No.') !!}
-                                {!! Form::tel('mobile_no', null, ['class' => 'form-control', 'placeholder' => 'Mobile No.',]) !!}
+                                {!! Form::label('mobile_no', 'Mobile No.') !!} <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
+                                {!! Form::text('mobile_no', null, ['class' => 'form-control', 'placeholder' => 'Mobile No.', 'required' => 'required', 'maxlength' => '10']) !!}
                             </div>
                         </div>
 
                         <div class="row mt-10 mb-10">
-                            <div class="col-md-4 form-group">
+                            <div class="col-md-12 form-group" id="dist_div">
                                 {!! Form::label('district_id', 'District ') !!}
                                 <div class="input-group">
-                                    {!! Form::select('district_id', ['' => 'Choose Option']  + $districts, null , ['class' => 'form-control']) !!}
+                                    {!! Form::select('district_id', ['' => 'Choose District']  + $districts, null , ['class' => 'form-control', 'id' => 'district_id', 'required' => 'required']) !!}
                                 </div>
                             </div>
-                            <div class="col-md-4 form-group">
-                                {!! Form::label('division_id', 'DS Division ') !!}
+                            <div class="col-md-4 form-group" id="ds_div">
+                                {!! Form::label('division_id', 'DS Division ') !!} <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
                                 <div class="input-group">
-                                    {!! Form::select('division_id', ['' => 'Choose Option']  , null, ['class' => 'form-control']) !!}
+                                    {!! Form::select('division_id', ['' => 'Choose Option']  , null, ['class' => 'form-control', 'required' => 'required']) !!}
                                 </div>
                             </div>
-                            <div class="col-md-4 form-group">
-                                {!! Form::label('gn_division', 'GN Division ') !!}
+                            <div class="col-md-4 form-group" id="gn_div">
+                                {!! Form::label('gn_division', 'GN Division ') !!} <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
                                 <div class="input-group">
-                                    {!! Form::text('gn_division', null, ['class' => 'form-control', 'placeholder' => 'Gramaniladari Division']) !!}
+                                    {!! Form::text('gn_division', null, ['class' => 'form-control', 'placeholder' => 'Gramaniladari Division', 'required' => 'required']) !!}
                                 </div>
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            {{ Form::label('sim_card', 'Do you received a sim card from SLBI? ', ['class' => 'control-label mb-10']) }}
+                            <span style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
+                            <div>
+                                <div class="custom-control custom-radio mb-5">
+                                    {{Form::radio('sim_card', 'Y' , false, ['id' => 'yes', 'class' => 'custom-control-input', 'required' => 'required']) }}
+                                    {{ Form::label('yes', 'Yes ', ['class' => 'custom-control-label']) }}
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    {!! Form::radio('sim_card', 'N' , true, ['id' => 'no', 'class' => 'custom-control-input', 'required' => 'required']) !!}
+                                    {!! Form::label('no', 'No ', ['class' => 'custom-control-label']) !!}
+                                </div>
+                            </div>
+                        </div>
 
-                        <div class="row">
+                        <div class="row mb-10" id="sim_section">
                             <div class="col-md-6 form-group">
-                                {!! Form::label('sim_no', 'SLBI SIM No.') !!}
-                                {!! Form::text('sim_no', null, ['class' => 'form-control', 'placeholder' => 'SLBI SIM No.']) !!}
+                                {!! Form::label('sim_no', 'SLBI SIM No.') !!} <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
+                                {!! Form::text('sim_no', null, ['class' => 'form-control', 'placeholder' => 'SLBI SIM No.', 'maxlength' => '10']) !!}
                             </div>
                             <div class="col-md-6 form-group">
-                                {!! Form::label('sim_serial_no', 'SLBI SIM Serial No.') !!}
-                                {!! Form::text('sim_serial_no', null, ['class' => 'form-control', 'placeholder' => 'SLBI SIM Serial No.',]) !!}
+                                {!! Form::label('sim_serial_no', 'SLBI SIM Serial No.') !!} <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
+                                {!! Form::text('sim_serial_no', null, ['class' => 'form-control', 'placeholder' => 'SLBI SIM Serial No.', 'maxlength' => '16']) !!}
                             </div>
                         </div>
 
                         <section class="hk-sec-wrapper">
-                            <h5 class="hk-sec-title">Custom file upload</h5>
-                            <p class="mb-40">A custom file browser with change and remove function.</p>
+                            <h6 class="hk-sec-title">Passport Size Photo <span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span></h6>
                             <div class="row mb-10">
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-12 form-group">
                                     <div class="form-group mb-0">
                                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Passport Size Photo</span>
-                                            </div>
                                             <div class="form-control text-truncate" data-trigger="fileinput"><i
                                                     class="glyphicon glyphicon-file fileinput-exists"></i> <span
                                                     class="fileinput-filename"></span></div>
@@ -150,7 +177,7 @@
                         														<span class=" btn btn-primary btn-file"><span
                                                                                         class="fileinput-new">Select file</span><span
                                                                                         class="fileinput-exists">Change</span>
-                                                                        {!! Form::file('passport_photo', null) !!}
+                                                                        {!! Form::file('passport_photo',['required' => 'required', 'id' => 'passport_photo']) !!}
                                                                         </span>
                                                                         <a href="#"
                                                                            class="btn btn-secondary fileinput-exists"
@@ -158,60 +185,68 @@
                                                                         </span>
                                         </div>
                                     </div>
+
+                                    <span id="passport_uploaded_image" passport_id=""></span>
+
                                 </div>
 
-                                <div class="col-md-6 form-group">
-                                    <div class="form-group mb-0">
-                                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                            <div class="input-group-prepend">
-                                                                            <span
-                                                                                class="input-group-text">NIC/Driving License Front Image</span>
-                                            </div>
-                                            <div class="form-control text-truncate" data-trigger="fileinput"><i
-                                                    class="glyphicon glyphicon-file fileinput-exists"></i> <span
-                                                    class="fileinput-filename"></span></div>
-                                            <span class="input-group-append">
-                        														<span class=" btn btn-primary btn-file"><span
-                                                                                        class="fileinput-new">Select file</span><span
-                                                                                        class="fileinput-exists">Change</span>
-                                                                        {!! Form::file('gov_f_photo', null) !!}
-                                                                        </span>
-                                                                        <a href="#"
-                                                                           class="btn btn-secondary fileinput-exists"
-                                                                           data-dismiss="fileinput">Remove</a>
-                                                                        </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <div class="form-group mb-0">
-                                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">NIC/Driving License Back Image</span>
-                                            </div>
-                                            <div class="form-control text-truncate" data-trigger="fileinput"><i
-                                                    class="glyphicon glyphicon-file fileinput-exists"></i> <span
-                                                    class="fileinput-filename"></span></div>
-                                            <span class="input-group-append">
-                                                    <span class=" btn btn-primary btn-file"><span
-                                                            class="fileinput-new">Select file</span><span
-                                                            class="fileinput-exists">Change</span>
-                                            {!! Form::file('gov_b_photo', null) !!}
-                                            </span>
-                                                                        <a href="#"
-                                                                           class="btn btn-secondary fileinput-exists"
-                                                                           data-dismiss="fileinput">Remove</a>
-                                                                        </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                         </section>
 
-                        {!! Form::reset('Reset', ['class' => 'mt-3 btn btn-info mr-3']) !!}
-                        {!! Form::submit('Complete', ['class' => 'mt-3 btn btn-primary']) !!}
+                        <section class="hk-sec-wrapper">
+                            <h6 class="hk-sec-title">NIC/Driving License Front Image<span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span></h6>
+                            <div class="col-md-12 form-group">
+                                <div class="form-group mb-0">
+                                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
 
+                                        <div class="form-control text-truncate" data-trigger="fileinput"><i
+                                                class="glyphicon glyphicon-file fileinput-exists"></i> <span
+                                                class="fileinput-filename"></span></div>
+                                        <span class="input-group-append">
+                        														<span class=" btn btn-primary btn-file"><span
+                                                                                        class="fileinput-new">Select file</span><span
+                                                                                        class="fileinput-exists">Change</span>
+                                                                        {!! Form::file('gov_f_photo',['required' => 'required']) !!}
+                                                                        </span>
+                                                                        <a href="#"
+                                                                           class="btn btn-secondary fileinput-exists"
+                                                                           data-dismiss="fileinput">Remove</a>
+                                                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="hk-sec-wrapper">
+                            <h6 class="hk-sec-title">NIC/Driving License Back Image<span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span></h6>
+                            <div class="col-md-12 form-group">
+                                <div class="form-group mb-0">
+                                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                        <div class="form-control text-truncate" data-trigger="fileinput"><i
+                                                class="glyphicon glyphicon-file fileinput-exists"></i> <span
+                                                class="fileinput-filename"></span></div>
+                                        <span class="input-group-append">
+                        														<span class=" btn btn-primary btn-file"><span
+                                                                                        class="fileinput-new">Select file</span><span
+                                                                                        class="fileinput-exists">Change</span>
+                                                                        {!! Form::file('passport_photo',['required' => 'required']) !!}
+                                                                        </span>
+                                                                        <a href="#"
+                                                                           class="btn btn-secondary fileinput-exists"
+                                                                           data-dismiss="fileinput">Remove</a>
+                                                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center">
+
+                            {!! Form::reset('Reset', ['class' => 'mt-3 btn btn-info mr-3 btn-lg']) !!}
+                            {!! Form::submit('Complete', ['class' => 'mt-3 btn btn-primary btn-lg']) !!}
+                        </div>
 
                         {!! Form::close() !!}
 
@@ -227,11 +262,23 @@
     <script>
         $(document).ready(function () {
 
+            $('#ds_div').hide();
+            $('#gn_div').hide();
+
+            $("#sim_section").hide();
+
             $('#district_id').on('change', function () {
 
                 var url = '{{ url('json') }}' + '/district/' + $(this).val() + '/divisions/';
 
                 $.get(url, function (data) {
+                    $('#dist_div').removeClass('col-md-12');
+                    $('#dist_div').addClass('col-md-4');
+                    $('#ds_div').show();
+                    $('#gn_div').show();
+
+                    $("#district_id option[value='']").remove();
+
                     var select = $('form select[name=division_id]');
 
                     select.empty();
@@ -240,6 +287,19 @@
                         select.append('<option value=' + value.id + '>' + value.name + '</option>');
                     });
                 });
+            });
+
+            $('input[type="radio"]').click(function () {
+                var value = $(this).val();
+                if (value === 'Y') {
+                    $("#sim_section").show();
+                    $("input#yes").prop('required', true);
+                    $("input#no").prop('required', true);
+                } else if (value === 'N') {
+                    $("#sim_section").hide();
+                    $("input#yes").prop('required', false);
+                    $("input#no").prop('required', false);
+                }
             });
 
         });

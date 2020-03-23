@@ -6,6 +6,7 @@ use App\Designation;
 use App\District;
 use App\Division;
 use App\Employee;
+use App\Http\Requests\EmployeeRequest;
 use App\Photo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -19,7 +20,9 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-
+        $designations = Designation::pluck('name', 'id')->all();
+        $districts = District::pluck('name','id')->all();
+        return view('forms.employee', compact('designations','districts'));
     }
 
     /**
@@ -29,9 +32,7 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        $designations = Designation::pluck('name', 'id')->all();
-        $districts = District::pluck('name','id')->all();
-        return view('forms.employee', compact('designations','districts'));
+        //
     }
 
 
@@ -41,7 +42,7 @@ class EmployeesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
         //
 
@@ -124,4 +125,5 @@ class EmployeesController extends Controller
         $divisions = Division::where('district_id', $id)->get(['id','name']);
         return $divisions;
     }
+
 }

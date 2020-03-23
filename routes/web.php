@@ -44,7 +44,5 @@ Route::get('/json/district/{id}/divisions', 'EmployeesController@divisions');
 
 Route::resource('/forms/employee', 'EmployeesController');
 
-//Route::resource('/forms/employee', 'EmployeesController', ['names' => [
-//    'create' => 'forms.employee',
-//    'store' => 'forms.employee.store'
-//]]);
+Route::post('/ajax_upload/passport', 'EmployeesController@passport_image_upload')->name('ajaxupload.passport');
+

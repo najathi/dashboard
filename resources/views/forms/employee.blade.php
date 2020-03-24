@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Title -->
-    <div class="hk-pg-header">
+    <div class="hk-pg-header" id="employee_form_header">
         <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="align-left"></i></span></span>Employee
             Form</h4>
     </div>
@@ -15,15 +15,17 @@
     <!-- Row -->
     <div class="row">
         <div class="col-xl-12">
-            <section class="hk-sec-wrapper">
+
+            <!-- Employee Form Section           -->
+            <section class="hk-sec-wrapper" id="employee_form_section">
                 <h5 class="hk-sec-title">Employee Details</h5>
                 <p class="mb-25">An employee is an individual who was hired by an employer to do a specific job.</p>
                 <div class="row">
                     <div class="col-sm">
 
-                        @include('includes.user_form_error')
+                        <div class="alert" id="message" style="display: none"></div>
 
-                        {!! Form::open(['method' => 'POST', 'route' => 'employee.store', 'files'=> true]) !!}
+                        {!! Form::open(['method' => 'POST', 'route' => 'employee.store', 'files'=> true, 'id' => 'employee_form']) !!}
 
 
                         <div class="row">
@@ -54,7 +56,8 @@
                                 {!! Form::label('designation_id', 'Designation ') !!} <span
                                     style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
                                 <div class="input-group">
-                                    {!! Form::select('designation_id', ['' => 'Choose Option']  + $designations, null , ['class' => 'form-control', 'required' => 'required']) !!}
+                                    <input type="hidden" name="area_manager_id" id="area_manager_id" value="{{request()->query('am')}}" />
+                                    {!! Form::select('designation_id', ['' => 'Choose Option']  + $designations, null , ['class' => 'form-control', 'id' => 'designation_id', 'required' => 'required']) !!}
                                 </div>
                             </div>
                         </div>
@@ -231,7 +234,7 @@
                         														<span class=" btn btn-primary btn-file"><span
                                                                                         class="fileinput-new">Select file</span><span
                                                                                         class="fileinput-exists">Change</span>
-                                                                        {!! Form::file('passport_photo',['required' => 'required']) !!}
+                                                                        {!! Form::file('gov_b_photo',['required' => 'required']) !!}
                                                                         </span>
                                                                         <a href="#"
                                                                            class="btn btn-secondary fileinput-exists"
@@ -239,6 +242,36 @@
                                                                         </span>
                                     </div>
                                 </div>
+                            </div>
+                        </section>
+
+                        <section class="hk-sec-wrapper">
+                            <h6 class="hk-sec-title">Your Signature<span
+                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span></h6>
+                            <div class="col-md-12">
+                                <div id="signature-pad" class="signature-pad">
+                                    <div class="signature-pad--body">
+                                        <canvas></canvas>
+                                    </div>
+                                    <div class="signature-pad--footer">
+                                        <div class="description">Sign above</div>
+
+                                        <div class="signature-pad--actions">
+                                            <div>
+                                                <button type="button" class="btn btn-dark clear" data-action="clear">Clear</button>
+<!--                                                <button type="button" class="btn btn-dark" data-action="change-color">Change color</button>-->
+                                                <button type="button" class="btn btn-dark" data-action="undo">Undo</button>
+
+                                            </div>
+                                            <!--                                                <div>-->
+                                            <!--                                                    <button type="button" class="button save" data-action="save-png">Save as PNG</button>-->
+                                            <!--                                                    <button type="button" class="button save" data-action="save-jpg">Save as JPG</button>-->
+                                            <!--                                                    <button type="button" class="button save" data-action="save-svg">Save as SVG</button>-->
+                                            <!--                                                </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </section>
 
@@ -253,6 +286,43 @@
                     </div>
                 </div>
             </section>
+            <!-- End of Employee Form Section            -->
+
+            <!-- Employee Success Section           -->
+            <section class="hk-sec-wrapper" id="employee_success_section">
+                <h5 class="hk-sec-title">Your Resources:</h5>
+                <p class="mb-25 alert alert-success">Your form has been received successfully!
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-sm table-striped">
+                            <tbody>
+                            <tr scope="row">
+                                <th><strong>ID Number</strong></th>
+                                <td>dfrg4t</td>
+                            </tr>
+                            <tr scope="row">
+                                <th><strong>ID Card</strong></th>
+                                <td><a href="">Download</a></td>
+                            </tr>
+                            <tr scope="row">
+                                <th><strong>Assignation Certificate</strong></th>
+                                <td><a href="">Download</a></td>
+                            </tr>
+                            <tr scope="row">
+                                <th><strong>Visiting Card</strong></th>
+                                <td><a href="">Download</a></td>
+                            </tr>
+                            <tr scope="row">
+                                <th><strong>Parent Link</strong></th>
+                                <td><input type="text" id="parent_link" class="form-control" /></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- End of Employee Success Section           -->
+
         </div>
     </div>
     <!-- /Row -->
@@ -261,6 +331,11 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
+
+            if ($('#area_manager_id').val() === '') {
+                $("#designation_id option[value='6']").remove();
+                $("#designation_id option[value='7']").remove();
+            }
 
             $('#ds_div').hide();
             $('#gn_div').hide();
@@ -300,6 +375,43 @@
                     $("input#yes").prop('required', false);
                     $("input#no").prop('required', false);
                 }
+            });
+
+            $('#employee_form').on('submit', function(e){
+                e.preventDefault();
+                var signUrl = '';
+                var formData = new FormData(this);
+                if (signaturePad.isEmpty()) {
+                    alert("Please provide a signature first.");
+                } else {
+                    formData.append('signature',signaturePad.toDataURL("image/svg+xml"));
+                }
+
+                $.ajax({
+                    url:"{{ route('employee.store') }}",
+                    method:"POST",
+                    data:formData,
+                    dataType:'JSON',
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success:function(data)
+                    {
+                        console.log(data);
+
+                        if (data.success) {
+                            $('#employee_form_header').remove();
+                            $('#employee_form_section').remove();
+                        } else {
+                            $('#message').css('display', 'block');
+                            $('#message').removeClass()
+                            $('#message').addClass("alert");
+                            $('#message').addClass(data.class);
+                            $('#message').html(data.message);
+                        }
+                        // $('#uploaded_image').html(data.uploaded_image);
+                    }
+                });
             });
 
         });

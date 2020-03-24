@@ -32,3 +32,7 @@
 <script src="{{ asset('dist') }}/js/lightgallery-all.js"></script>
 <script src="{{ asset('dist') }}/js/landing-data.js"></script>
 <script src="{{ asset('dist') }}/js/init.js"></script>
+
+<!-- Signature Pad JavaScript -->
+<script src="{{ asset('asset') }}/js/signature_pad.js"></script>
+<script src="{{ asset('asset') }}/js/app.js"></script>

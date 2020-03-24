@@ -32,9 +32,10 @@ class CreateEmployeesTable extends Migration
             $table->string('gn_division');
             $table->integer('gov_f_photo');
             $table->integer('gov_b_photo');
+            $table->integer('signature');
             $table->string('sim_no')->nullable();
             $table->string('sim_serial_no')->nullable();
-            $table->string('parent_code')->nullable();
+            $table->string('emp_code')->nullable();
             $table->timestamps();
         });
     }

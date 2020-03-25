@@ -8,17 +8,29 @@
     <!-- Title -->
     <div class="hk-pg-header" id="employee_form_header">
         <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="align-left"></i></span></span>Employee
-            Form</h4>
+            Details</h4>
     </div>
     <!-- /Title -->
+
+    <!-- CSS Loader -->
+    <div id="pure-css-loader1">
+        <div class="center-pure-css">
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Row -->
     <div class="row">
         <div class="col-xl-12">
 
             <!-- Employee Form Section           -->
-            <section class="hk-sec-wrapper" id="employee_form_section">
-                <h5 class="hk-sec-title">Employee Details</h5>
+            <section class="hk-sec-wrapper" id="employee_form_section" style="display: none;">
+                <h5 class="hk-sec-title">Employee Form</h5>
                 <p class="mb-25">An employee is an individual who was hired by an employer to do a specific job.</p>
                 <div class="row">
                     <div class="col-sm">
@@ -56,7 +68,8 @@
                                 {!! Form::label('designation_id', 'Designation ') !!} <span
                                     style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
                                 <div class="input-group">
-                                    <input type="hidden" name="area_manager_id" id="area_manager_id" value="{{request()->query('am')}}" />
+                                    <input type="hidden" name="area_manager_id" id="area_manager_id"
+                                           value="{{request()->query('am')}}"/>
                                     {!! Form::select('designation_id', ['' => 'Select Designation']  + $designations, null , ['class' => 'form-control', 'id' => 'designation_id', 'required' => 'required']) !!}
                                 </div>
                             </div>
@@ -134,6 +147,16 @@
                                     style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
                                 <div class="input-group">
                                     {!! Form::text('gn_division', null, ['class' => 'form-control', 'placeholder' => 'Gramaniladari Division', 'required' => 'required']) !!}
+                                </div>
+                            </div>
+                        </div>
+                        <div id="pure-css-loader2">
+                            <div class="center-pure-css">
+                                <div class="lds-ring">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
                                 </div>
                             </div>
                         </div>
@@ -258,9 +281,12 @@
 
                                         <div class="signature-pad--actions">
                                             <div>
-                                                <button type="button" class="btn btn-dark clear" data-action="clear">Clear</button>
-<!--                                                <button type="button" class="btn btn-dark" data-action="change-color">Change color</button>-->
-                                                <button type="button" class="btn btn-dark" data-action="undo">Undo</button>
+                                                <button type="button" class="btn btn-dark clear" data-action="clear">
+                                                    Clear
+                                                </button>
+                                                <!--                                                <button type="button" class="btn btn-dark" data-action="change-color">Change color</button>-->
+                                                <button type="button" class="btn btn-dark" data-action="undo">Undo
+                                                </button>
 
                                             </div>
                                             <!--                                                <div>-->
@@ -289,7 +315,8 @@
             <!-- End of Employee Form Section            -->
 
             <!-- Loader Modal -->
-            <div class="modal fade" id="loader" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+            <div class="modal fade" id="loader" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true"
                  data-backdrop="static" data-keyboard="false">
                 <div class="vertical-alignment-helper">
                     <div class="modal-dialog vertical-align-center">
@@ -304,9 +331,10 @@
             </div>
 
             <!-- Employee Success Section           -->
-            <section class="hk-sec-wrapper" id="employee_success_section">
+            <section class="hk-sec-wrapper" id="employee_success_section" style="display: none;">
                 <h5 class="hk-sec-title">Your Resources:</h5>
-                <p class="mb-25">We have received your information! Here are your resources, Save them in safer place.</p>
+                <p class="mb-25">We have received your information! Here are your resources, Save them in safer
+                    place.</p>
                 <div class="row">
                     <div class="col-sm-12">
                         <table class="table table-sm table-striped" id="resources_table">
@@ -315,7 +343,27 @@
                     </div>
                 </div>
             </section>
-            <!-- End of Employee Success Section           -->
+            <!-- End of Employee Success Section  -->
+
+            <!-- Modal -->
+            <div class="modal" tabindex="-1" role="dialog" id="signatureModel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Put the signature!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Please provide a signature first.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -334,20 +382,25 @@
             } else {
                 let i;
                 for (i = 0; i <= 5; i++) {
-                    $("#designation_id option[value='"+i+"']").remove();
+                    $("#designation_id option[value='" + i + "']").remove();
                 }
             }
 
             $('#ds_div').hide();
             $('#gn_div').hide();
-
             $("#sim_section").hide();
+            $('#pure-css-loader1').hide();
+            $('#employee_form_section').show();
+            $('#pure-css-loader2').hide();
 
             $('#district_id').on('change', function () {
+
+                $('#pure-css-loader2').show();
 
                 var url = '{{ url('json') }}' + '/district/' + $(this).val() + '/divisions/';
 
                 $.get(url, function (data) {
+                    $('#pure-css-loader2').hide();
                     $('#dist_div').removeClass('col-md-12');
                     $('#dist_div').addClass('col-md-4');
                     $('#ds_div').show();
@@ -366,7 +419,7 @@
             });
 
             $('input[type="radio"]').click(function () {
-                var value = $(this).val();
+                let value = $(this).val();
                 if (value === 'Y') {
                     $("#sim_section").show();
                     $("input#yes").prop('required', true);
@@ -378,33 +431,41 @@
                 }
             });
 
-            $('#employee_form').on('submit', function(e){
+            $('#empCodeSpanBtn').click(function () {
+                let $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val($("#empCodeSpan").text()).select();
+                document.execCommand("copy");
+                $temp.remove();
+            });
+
+            $('#employee_form').on('submit', function (e) {
                 e.preventDefault();
                 var signUrl = '';
                 var formData = new FormData(this);
                 if (signaturePad.isEmpty()) {
-                    alert("Please provide a signature first.");
-                } else {
-                    formData.append('signature',signaturePad.toDataURL("image/svg+xml"));
+                    return $("#signatureModel").modal('show');
                 }
 
+                formData.append('signature', signaturePad.toDataURL("image/svg+xml"));
+
                 $.ajax({
-                    url:"{{ route('employee.store') }}",
-                    method:"POST",
-                    data:formData,
-                    dataType:'JSON',
+                    url: "{{ route('employee.store') }}",
+                    method: "POST",
+                    data: formData,
+                    dataType: 'JSON',
                     contentType: false,
                     cache: false,
                     processData: false,
-                    beforeSend: function(){
-                        $("#loader").modal('show');
+                    beforeSend: function () {
+                        $('#pure-css-loader1').show();
+                        $('#employee_form_section').hide();
                     },
-                    success:function(data)
-                    {
+                    success: function (data) {
                         console.log(data);
 
                         if (data.success) {
-                            $('#employee_form_header').remove();
+                            $('#pure-css-loader1').hide();
                             $('#employee_form_section').remove();
                             $("#employee_success_section").show();
                             var table = $('#resources_table');
@@ -412,6 +473,8 @@
                             table.append(data.table);
 
                         } else {
+                            $('#pure-css-loader1').hide();
+                            $('#employee_form_section').show();
                             $('#message').css('display', 'block');
                             $('#message').removeClass()
                             $('#message').addClass("alert");
@@ -420,7 +483,7 @@
                             let errorMessages = "";
                             let i;
                             let message = Array.from(data.message);
-                            for (i=0; i<message.length; i++) {
+                            for (i = 0; i < message.length; i++) {
                                 errorMessages += message[i] + "<br />";
                             }
 
@@ -430,8 +493,8 @@
                         }
                         // $('#uploaded_image').html(data.uploaded_image);
                     }
-                }).done(function(){
-                    $("#loader").modal('hide');
+                }).done(function () {
+                    $('#pure-css-loader1').hide();
                 });
             });
 

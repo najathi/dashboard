@@ -95,31 +95,39 @@ class EmployeesController extends Controller
             $exist_data['sim_serial_no'] = Employee::where('sim_serial_no', str_replace(' ', '', $input['sim_serial_no']))->get();
             $exist_data['designation_id'] = Employee::where('designation_id', $input['designation_id'])->where('district_id', $input['district_id'])->get();
 
-
             $exist_data_errors = [];
 
+            $email_accounts_api = file_get_contents('http://slbi.lk/rest-api/email_accounts.php');
+            $email_accounts = json_decode($email_accounts_api, TRUE);
+
+            if (!array_key_exists($input['email'],$email_accounts))
+            {
+                array_push($exist_data_errors, 'Your email address is not valid!');
+            }
+
+
             if (count($exist_data['nic']) != 0) {
-                array_push($exist_data_errors, 'NIC No is Already Exists!');
+                array_push($exist_data_errors, 'NIC No is already exists!');
             }
 
             if (count($exist_data['email']) != 0) {
-                array_push($exist_data_errors, 'Email is Already Exists!');
+                array_push($exist_data_errors, 'Email is already exists!');
             }
 
             if (count($exist_data['mobile_no']) != 0) {
-                array_push($exist_data_errors, 'Mobile No is Already Exists!');
+                array_push($exist_data_errors, 'Mobile No is already exists!');
             }
 
             if (count($exist_data['sim_no']) != 0) {
-                array_push($exist_data_errors, 'Sim No is Already Exists!');
+                array_push($exist_data_errors, 'Sim No is already exists!');
             }
 
             if (count($exist_data['sim_serial_no']) != 0) {
-                array_push($exist_data_errors, 'Sim Serial No is Already Exists!');
+                array_push($exist_data_errors, 'Sim Serial no is already exists!');
             }
 
             if (count($exist_data['designation_id']) != 0) {
-                array_push($exist_data_errors, 'District Manager For This District Already Exists!');
+                array_push($exist_data_errors, 'District Manager for this district already exists!');
             }
 
             if (count($exist_data_errors) === 0) {

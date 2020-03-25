@@ -6,11 +6,11 @@ use App\Designation;
 use App\District;
 use App\Division;
 use App\Employee;
-use App\Http\Requests\EmployeeRequest;
 use App\Photo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+
+use PDF;
 
 class EmployeesController extends Controller
 {
@@ -274,6 +274,45 @@ class EmployeesController extends Controller
     {
         $divisions = Division::where('district_id', $id)->get(['id','name']);
         return $divisions;
+    }
+
+    public function printPDFIdCard($id)
+    {
+        // This  $data array will be passed to our PDF blade
+        $data = [
+            'title' => 'First PDF for Medium',
+            'heading' => 'Hello from 99Points.info',
+            'content' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+        ];
+
+        $pdf = PDF::loadView('pdf.pdf_id_card', $data);
+        return $pdf->download('id_card.pdf');
+    }
+
+    public function printPDFAssCert($id)
+    {
+        // This  $data array will be passed to our PDF blade
+        $data = [
+            'title' => 'First PDF for Medium',
+            'heading' => 'Hello from 99Points.info',
+            'content' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+        ];
+
+        $pdf = PDF::loadView('pdf.pdf_assign_cert', $data);
+        return $pdf->download('assign_cert.pdf');
+    }
+
+    public function printPDFVisitCard($id)
+    {
+        // This  $data array will be passed to our PDF blade
+        $data = [
+            'title' => 'First PDF for Medium',
+            'heading' => 'Hello from 99Points.info',
+            'content' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+        ];
+
+        $pdf = PDF::loadView('pdf.pdf_visit_card', $data);
+        return $pdf->download('visit_card.pdf');
     }
 
 }

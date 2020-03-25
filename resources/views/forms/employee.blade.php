@@ -350,7 +350,27 @@
                     </div>
                 </div>
             </section>
-            <!-- End of Employee Success Section           -->
+            <!-- End of Employee Success Section -->
+
+            <!-- Modal -->
+            <div class="modal" tabindex="-1" role="dialog" id="signatureModel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Fill the signature!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Please provide a signature first.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -415,42 +435,43 @@
                 var signUrl = '';
                 var formData = new FormData(this);
                 if (signaturePad.isEmpty()) {
-                    alert("Please provide a signature first.");
+                    //alert("Please provide a signature first.");
+                    $('#signatureModel').modal('show');
                 } else {
                     formData.append('signature', signaturePad.toDataURL("image/svg+xml"));
-                }
 
-                $.ajax({
-                    url: "{{ route('employee.store') }}",
-                    method: "POST",
-                    data: formData,
-                    dataType: 'JSON',
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    beforeSend: function () {
-                        $('#pure-css-loader1').show();
-                        $('#employee_form_section').hide();
-                    },
-                    success: function (data) {
-                        console.log(data);
+                    $.ajax({
+                        url: "{{ route('employee.store') }}",
+                        method: "POST",
+                        data: formData,
+                        dataType: 'JSON',
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        beforeSend: function () {
+                            $('#pure-css-loader1').show();
+                            $('#employee_form_section').hide();
+                        },
+                        success: function (data) {
+                            console.log(data);
 
-                        if (data.success) {
-                            $('#pure-css-loader1').hide();
-                            $('#employee_form_section').remove();
-                            $('#employee_success_section').show();
-                        } else {
-                            $('#pure-css-loader1').hide();
-                            $('#employee_form_section').show();
-                            $('#message').css('display', 'block');
-                            $('#message').removeClass();
-                            $('#message').addClass("alert");
-                            $('#message').addClass(data.class);
-                            $('#message').html(data.message);
+                            if (data.success) {
+                                $('#pure-css-loader1').hide();
+                                $('#employee_form_section').remove();
+                                $('#employee_success_section').show();
+                            } else {
+                                $('#pure-css-loader1').hide();
+                                $('#employee_form_section').show();
+                                $('#message').css('display', 'block');
+                                $('#message').removeClass();
+                                $('#message').addClass("alert");
+                                $('#message').addClass(data.class);
+                                $('#message').html(data.message);
+                            }
+                            // $('#uploaded_image').html(data.uploaded_image);
                         }
-                        // $('#uploaded_image').html(data.uploaded_image);
-                    }
-                });
+                    });
+                }
             });
 
         });

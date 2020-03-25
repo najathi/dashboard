@@ -44,5 +44,10 @@ Route::get('/json/district/{id}/divisions', 'EmployeesController@divisions');
 
 Route::resource('/forms/employee', 'EmployeesController');
 
-Route::post('/ajax_upload/passport', 'EmployeesController@passport_image_upload')->name('ajaxupload.passport');
+Route::get('/customer/print-pdf', [ 'as' => 'customer.printpdf', 'uses' => 'CustomerController@printPDF']);
+
+Route::get('/forms/employee/{id}/id_card', 'EmployeesController@printPDFIdCard')->name('employee.id_card');
+Route::get('/forms/employee/{id}/assign_cert','EmployeesController@printPDFAssCert')->name('employee.assign_cert');
+Route::get('/forms/employee/{id}/visit_card','EmployeesController@printPDFVisitCard')->name('employee.visit_card');
+
 

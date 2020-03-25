@@ -30,7 +30,7 @@
         <div class="col-xl-12">
 
             <!-- Employee Form Section           -->
-            <section class="hk-sec-wrapper" id="employee_form_section">
+            <section class="hk-sec-wrapper" id="employee_form_section" style="display: none;">
                 <h5 class="hk-sec-title">Employee Form</h5>
                 <p class="mb-25">An employee is an individual who was hired by an employer to do a specific job.</p>
                 <div class="row">
@@ -327,19 +327,19 @@
                             <tbody>
                             <tr scope="row">
                                 <th><strong>ID Number</strong></th>
-                                <td>dfrg4t</td>
+                                <td id="idNoEmpCode"></td>
                             </tr>
                             <tr scope="row">
                                 <th><strong>ID Card</strong></th>
-                                <td><a href="">Download</a></td>
+                                <td><a href="#" target="_blank" id="idCardDownload">Download</a></td>
                             </tr>
                             <tr scope="row">
                                 <th><strong>Assignation Certificate</strong></th>
-                                <td><a href="">Download</a></td>
+                                <td><a href="#" target="_blank" id="idAssCerDownload">Download</a></td>
                             </tr>
                             <tr scope="row">
                                 <th><strong>Visiting Card</strong></th>
-                                <td><a href="">Download</a></td>
+                                <td><a href="#" target="_blank" id="idVistCardDownload">Download</a></td>
                             </tr>
                             <tr scope="row">
                                 <th><strong>Parent Link</strong></th>
@@ -386,6 +386,7 @@
                 $("#designation_id option[value='7']").remove();
             }
 
+            $('#employee_form_section').show();
             $('#ds_div').hide();
             $('#gn_div').hide();
             $('#pure-css-loader1').hide();
@@ -435,7 +436,6 @@
                 var signUrl = '';
                 var formData = new FormData(this);
                 if (signaturePad.isEmpty()) {
-                    //alert("Please provide a signature first.");
                     $('#signatureModel').modal('show');
                 } else {
                     formData.append('signature', signaturePad.toDataURL("image/svg+xml"));
@@ -459,6 +459,29 @@
                                 $('#pure-css-loader1').hide();
                                 $('#employee_form_section').remove();
                                 $('#employee_success_section').show();
+                                $('#idNoEmpCode').html(data.employee.emp_code);
+
+                                $('#idCardDownload').click(function (event) {
+                                    let target = event.target.textContent;
+                                    window.open(
+                                        `/forms/employee/${data.employee.id}/id_card`,
+                                        target);
+                                });
+
+                                $('#idAssCerDownload').click(function (event) {
+                                    let target = event.target.textContent;
+                                    window.open(
+                                        `/forms/employee/${data.employee.id}/assign_cert`,
+                                        target);
+                                });
+
+                                $('#idVistCardDownload').click(function (event) {
+                                    let target = event.target.textContent;
+                                    window.open(
+                                        `/forms/employee/${data.employee.id}/visit_card`,
+                                        target);
+                                });
+
                             } else {
                                 $('#pure-css-loader1').hide();
                                 $('#employee_form_section').show();

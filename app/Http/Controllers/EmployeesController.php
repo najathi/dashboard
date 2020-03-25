@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
+use PDF;
+
 class EmployeesController extends Controller
 {
     /**
@@ -22,8 +24,8 @@ class EmployeesController extends Controller
     public function index()
     {
         $designations = Designation::pluck('name', 'id')->all();
-        $districts = District::pluck('name','id')->all();
-        return view('forms.employee', compact('designations','districts'));
+        $districts = District::pluck('name', 'id')->all();
+        return view('forms.employee', compact('designations', 'districts'));
     }
 
     /**
@@ -40,7 +42,7 @@ class EmployeesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function store(Request $request)
@@ -65,16 +67,16 @@ class EmployeesController extends Controller
             'gov_b_photo' => 'required|image',
         ]);
 
-            if ($validate->errors()->count() >= 1) {
-                return response()->json([
-                    'message'   => $validate->errors()->all(),
-                    'class'  => 'alert-danger',
-                    'success' => false
-                ]);
-            }
+        if ($validate->errors()->count() >= 1) {
+            return response()->json([
+                'message' => $validate->errors()->all(),
+                'class' => 'alert-danger',
+                'success' => false
+            ]);
+        }
 
 
-            if ($validate->validated()) {
+        if ($validate->validated()) {
 
             $input = $request->all();
 
@@ -83,16 +85,16 @@ class EmployeesController extends Controller
             $gov_b_photo = $request->file('gov_b_photo');
 
 
-                if ($input['signature'] != '') {
-                    $encoded_image = explode(",", $input['signature'])[1];
-                    $decoded_image = base64_decode($encoded_image);
-                    $image_name = time().'-sign.svg';
+            if ($input['signature'] != '') {
+                $encoded_image = explode(",", $input['signature'])[1];
+                $decoded_image = base64_decode($encoded_image);
+                $image_name = time() . '-sign.svg';
 
-                    $success = file_put_contents(public_path().'/media/uploads/'.$image_name, $decoded_image);
+                $success = file_put_contents(public_path() . '/media/uploads/' . $image_name, $decoded_image);
 
-                    $signature = Photo::create(['file' => $image_name]);
-                    $input['signature'] = $signature->id;
-                }
+                $signature = Photo::create(['file' => $image_name]);
+                $input['signature'] = $signature->id;
+            }
 
             if ($passport_photo || $gov_f_photo || $gov_b_photo) {
                 $passport_photo_name = time() . $passport_photo->getClientOriginalName();
@@ -158,7 +160,8 @@ class EmployeesController extends Controller
             return response()->json([
                 'message' => 'Employee Form Submitted Successfully',
                 'class' => 'alert-success',
-                'success' => true
+                'success' => true,
+                'employee' => $update_emp_code
             ]);
 
         }
@@ -168,7 +171,7 @@ class EmployeesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -179,7 +182,7 @@ class EmployeesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -190,8 +193,8 @@ class EmployeesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -202,7 +205,7 @@ class EmployeesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -212,8 +215,47 @@ class EmployeesController extends Controller
 
     public function divisions($id)
     {
-        $divisions = Division::where('district_id', $id)->get(['id','name']);
+        $divisions = Division::where('district_id', $id)->get(['id', 'name']);
         return $divisions;
+    }
+
+    public function printPDFIdCard($id)
+    {
+        // This  $data array will be passed to our PDF blade
+        $data = [
+            'title' => 'First PDF for Medium',
+            'heading' => 'Hello from 99Points.info',
+            'content' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+        ];
+
+        $pdf = PDF::loadView('pdf.pdf_id_card', $data);
+        return $pdf->download('id_card.pdf');
+    }
+
+    public function printPDFAssCert($id)
+    {
+        // This  $data array will be passed to our PDF blade
+        $data = [
+            'title' => 'First PDF for Medium',
+            'heading' => 'Hello from 99Points.info',
+            'content' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+        ];
+
+        $pdf = PDF::loadView('pdf.pdf_assign_cert', $data);
+        return $pdf->download('assign_cert.pdf');
+    }
+
+    public function printPDFVisitCard($id)
+    {
+        // This  $data array will be passed to our PDF blade
+        $data = [
+            'title' => 'First PDF for Medium',
+            'heading' => 'Hello from 99Points.info',
+            'content' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+        ];
+
+        $pdf = PDF::loadView('pdf.pdf_visit_card', $data);
+        return $pdf->download('visit_card.pdf');
     }
 
 }

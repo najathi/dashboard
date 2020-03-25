@@ -5,33 +5,20 @@
 @endsection
 
 @section('content')
-
     <!-- Title -->
     <div class="hk-pg-header" id="employee_form_header">
         <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="align-left"></i></span></span>Employee
-            Details</h4>
+            Form</h4>
     </div>
     <!-- /Title -->
-
-    <!-- CSS Loader -->
-    <div id="pure-css-loader1">
-        <div class="center-pure-css">
-            <div class="lds-ring">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-    </div>
 
     <!-- Row -->
     <div class="row">
         <div class="col-xl-12">
 
             <!-- Employee Form Section           -->
-            <section class="hk-sec-wrapper" id="employee_form_section" style="display: none;">
-                <h5 class="hk-sec-title">Employee Form</h5>
+            <section class="hk-sec-wrapper" id="employee_form_section">
+                <h5 class="hk-sec-title">Employee Details</h5>
                 <p class="mb-25">An employee is an individual who was hired by an employer to do a specific job.</p>
                 <div class="row">
                     <div class="col-sm">
@@ -69,9 +56,8 @@
                                 {!! Form::label('designation_id', 'Designation ') !!} <span
                                     style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
                                 <div class="input-group">
-                                    <input type="hidden" name="area_manager_id" id="area_manager_id"
-                                           value="{{request()->query('am')}}"/>
-                                    {!! Form::select('designation_id', ['' => 'Choose Option']  + $designations, null , ['class' => 'form-control', 'id' => 'designation_id', 'required' => 'required']) !!}
+                                    <input type="hidden" name="area_manager_id" id="area_manager_id" value="{{request()->query('am')}}" />
+                                    {!! Form::select('designation_id', ['' => 'Select Designation']  + $designations, null , ['class' => 'form-control', 'id' => 'designation_id', 'required' => 'required']) !!}
                                 </div>
                             </div>
                         </div>
@@ -151,16 +137,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="pure-css-loader2">
-                            <div class="center-pure-css">
-                                <div class="lds-ring">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             {{ Form::label('sim_card', 'Do you received a sim card from SLBI? ', ['class' => 'control-label mb-10']) }}
@@ -201,22 +177,21 @@
                                                     class="glyphicon glyphicon-file fileinput-exists"></i> <span
                                                     class="fileinput-filename"></span></div>
                                             <span class="input-group-append">
-                                                    <span class=" btn btn-primary btn-file"><span
-                                                            class="fileinput-new">Select file</span><span
-                                                            class="fileinput-exists">Change</span>
-                                            {!! Form::file('passport_photo',['required' => 'required', 'id' => 'passport_photo']) !!}
-                                            </span>
-                                            <a href="#"
-                                               class="btn btn-secondary fileinput-exists"
-                                               data-dismiss="fileinput">Remove</a>
-                                            </span>
+                        														<span class=" btn btn-primary btn-file"><span
+                                                                                        class="fileinput-new">Select file</span><span
+                                                                                        class="fileinput-exists">Change</span>
+                                                                        {!! Form::file('passport_photo',['required' => 'required', 'id' => 'passport_photo']) !!}
+                                                                        </span>
+                                                                        <a href="#"
+                                                                           class="btn btn-secondary fileinput-exists"
+                                                                           data-dismiss="fileinput">Remove</a>
+                                                                        </span>
                                         </div>
                                     </div>
 
                                     <span id="passport_uploaded_image" passport_id=""></span>
 
                                 </div>
-                            </div>
 
 
                         </section>
@@ -232,15 +207,15 @@
                                                 class="glyphicon glyphicon-file fileinput-exists"></i> <span
                                                 class="fileinput-filename"></span></div>
                                         <span class="input-group-append">
-                                                <span class=" btn btn-primary btn-file"><span
-                                                        class="fileinput-new">Select file</span><span
-                                                        class="fileinput-exists">Change</span>
-                                        {!! Form::file('gov_f_photo',['required' => 'required']) !!}
-                                        </span>
-                                        <a href="#"
-                                           class="btn btn-secondary fileinput-exists"
-                                           data-dismiss="fileinput">Remove</a>
-                                        </span>
+                        														<span class=" btn btn-primary btn-file"><span
+                                                                                        class="fileinput-new">Select file</span><span
+                                                                                        class="fileinput-exists">Change</span>
+                                                                        {!! Form::file('gov_f_photo',['required' => 'required']) !!}
+                                                                        </span>
+                                                                        <a href="#"
+                                                                           class="btn btn-secondary fileinput-exists"
+                                                                           data-dismiss="fileinput">Remove</a>
+                                                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -256,16 +231,15 @@
                                                 class="glyphicon glyphicon-file fileinput-exists"></i> <span
                                                 class="fileinput-filename"></span></div>
                                         <span class="input-group-append">
-                                            <span class=" btn btn-primary btn-file"><span
-                                                    class="fileinput-new">Select file</span>
-                                                <span
-                                                    class="fileinput-exists">Change</span>
-                                                {!! Form::file('gov_b_photo',['required' => 'required']) !!}
-                                            </span>
-                                    <a href="#"
-                                       class="btn btn-secondary fileinput-exists"
-                                       data-dismiss="fileinput">Remove</a>
-                                    </span>
+                        														<span class=" btn btn-primary btn-file"><span
+                                                                                        class="fileinput-new">Select file</span><span
+                                                                                        class="fileinput-exists">Change</span>
+                                                                        {!! Form::file('gov_b_photo',['required' => 'required']) !!}
+                                                                        </span>
+                                                                        <a href="#"
+                                                                           class="btn btn-secondary fileinput-exists"
+                                                                           data-dismiss="fileinput">Remove</a>
+                                                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -284,12 +258,9 @@
 
                                         <div class="signature-pad--actions">
                                             <div>
-                                                <button type="button" class="btn btn-dark clear" data-action="clear">
-                                                    Clear
-                                                </button>
-                                                <!--                                                <button type="button" class="btn btn-dark" data-action="change-color">Change color</button>-->
-                                                <button type="button" class="btn btn-dark" data-action="undo">Undo
-                                                </button>
+                                                <button type="button" class="btn btn-dark clear" data-action="clear">Clear</button>
+<!--                                                <button type="button" class="btn btn-dark" data-action="change-color">Change color</button>-->
+                                                <button type="button" class="btn btn-dark" data-action="undo">Undo</button>
 
                                             </div>
                                             <!--                                                <div>-->
@@ -317,60 +288,34 @@
             </section>
             <!-- End of Employee Form Section            -->
 
-            <!-- Employee Success Section           -->
-            <section class="hk-sec-wrapper" id="employee_success_section" style="display: none;">
-                <h5 class="hk-sec-title">Your Resources:</h5>
-                <p class="mb-25 alert alert-success">Your form has been received successfully!
-                <div class="row">
-                    <div class="col-sm-12">
-                        <table class="table table-sm table-striped">
-                            <tbody>
-                            <tr scope="row">
-                                <th><strong>ID Number</strong></th>
-                                <td id="idNoEmpCode"></td>
-                            </tr>
-                            <tr scope="row">
-                                <th><strong>ID Card</strong></th>
-                                <td><a href="#" target="_blank" id="idCardDownload">Download</a></td>
-                            </tr>
-                            <tr scope="row">
-                                <th><strong>Assignation Certificate</strong></th>
-                                <td><a href="#" target="_blank" id="idAssCerDownload">Download</a></td>
-                            </tr>
-                            <tr scope="row">
-                                <th><strong>Visiting Card</strong></th>
-                                <td><a href="#" target="_blank" id="idVistCardDownload">Download</a></td>
-                            </tr>
-                            <tr scope="row">
-                                <th><strong>Parent Link</strong></th>
-                                <td><input type="text" id="parent_link" class="form-control"/></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-            <!-- End of Employee Success Section -->
-
-            <!-- Modal -->
-            <div class="modal" tabindex="-1" role="dialog" id="signatureModel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Fill the signature!</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Please provide a signature first.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <!-- Loader Modal -->
+            <div class="modal fade" id="loader" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+                 data-backdrop="static" data-keyboard="false">
+                <div class="vertical-alignment-helper">
+                    <div class="modal-dialog vertical-align-center">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="loader"></div>
+                                <h3 class="text-center">Loading Please Wait..</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Employee Success Section           -->
+            <section class="hk-sec-wrapper" id="employee_success_section">
+                <h5 class="hk-sec-title">Your Resources:</h5>
+                <p class="mb-25">We have received your information! Here are your resources, Save them in safer place.</p>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-sm table-striped" id="resources_table">
+
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- End of Employee Success Section           -->
 
         </div>
     </div>
@@ -381,26 +326,28 @@
     <script>
         $(document).ready(function () {
 
+            $("#employee_success_section").hide();
+
             if ($('#area_manager_id').val() === '') {
                 $("#designation_id option[value='6']").remove();
                 $("#designation_id option[value='7']").remove();
+            } else {
+                let i;
+                for (i = 0; i <= 5; i++) {
+                    $("#designation_id option[value='"+i+"']").remove();
+                }
             }
 
-            $('#employee_form_section').show();
             $('#ds_div').hide();
             $('#gn_div').hide();
-            $('#pure-css-loader1').hide();
-            $('#pure-css-loader2').hide();
 
             $("#sim_section").hide();
 
             $('#district_id').on('change', function () {
 
                 var url = '{{ url('json') }}' + '/district/' + $(this).val() + '/divisions/';
-                $('#pure-css-loader2').show();
 
                 $.get(url, function (data) {
-                    $('#pure-css-loader2').hide();
                     $('#dist_div').removeClass('col-md-12');
                     $('#dist_div').addClass('col-md-4');
                     $('#ds_div').show();
@@ -431,70 +378,61 @@
                 }
             });
 
-            $('#employee_form').on('submit', function (e) {
+            $('#employee_form').on('submit', function(e){
                 e.preventDefault();
                 var signUrl = '';
                 var formData = new FormData(this);
                 if (signaturePad.isEmpty()) {
-                    $('#signatureModel').modal('show');
+                    alert("Please provide a signature first.");
                 } else {
-                    formData.append('signature', signaturePad.toDataURL("image/svg+xml"));
-
-                    $.ajax({
-                        url: "{{ route('employee.store') }}",
-                        method: "POST",
-                        data: formData,
-                        dataType: 'JSON',
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-                        beforeSend: function () {
-                            $('#pure-css-loader1').show();
-                            $('#employee_form_section').hide();
-                        },
-                        success: function (data) {
-                            console.log(data);
-
-                            if (data.success) {
-                                $('#pure-css-loader1').hide();
-                                $('#employee_form_section').remove();
-                                $('#employee_success_section').show();
-                                $('#idNoEmpCode').html(data.employee.emp_code);
-
-                                $('#idCardDownload').click(function (event) {
-                                    let target = event.target.textContent;
-                                    window.open(
-                                        `/forms/employee/${data.employee.id}/id_card`,
-                                        target);
-                                });
-
-                                $('#idAssCerDownload').click(function (event) {
-                                    let target = event.target.textContent;
-                                    window.open(
-                                        `/forms/employee/${data.employee.id}/assign_cert`,
-                                        target);
-                                });
-
-                                $('#idVistCardDownload').click(function (event) {
-                                    let target = event.target.textContent;
-                                    window.open(
-                                        `/forms/employee/${data.employee.id}/visit_card`,
-                                        target);
-                                });
-
-                            } else {
-                                $('#pure-css-loader1').hide();
-                                $('#employee_form_section').show();
-                                $('#message').css('display', 'block');
-                                $('#message').removeClass();
-                                $('#message').addClass("alert");
-                                $('#message').addClass(data.class);
-                                $('#message').html(data.message);
-                            }
-                            // $('#uploaded_image').html(data.uploaded_image);
-                        }
-                    });
+                    formData.append('signature',signaturePad.toDataURL("image/svg+xml"));
                 }
+
+                $.ajax({
+                    url:"{{ route('employee.store') }}",
+                    method:"POST",
+                    data:formData,
+                    dataType:'JSON',
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    beforeSend: function(){
+                        $("#loader").modal('show');
+                    },
+                    success:function(data)
+                    {
+                        console.log(data);
+
+                        if (data.success) {
+                            $('#employee_form_header').remove();
+                            $('#employee_form_section').remove();
+                            $("#employee_success_section").show();
+                            var table = $('#resources_table');
+
+                            table.append(data.table);
+
+                        } else {
+                            $('#message').css('display', 'block');
+                            $('#message').removeClass()
+                            $('#message').addClass("alert");
+                            $('#message').addClass(data.class);
+
+                            let errorMessages = "";
+                            let i;
+                            let message = Array.from(data.message);
+                            for (i=0; i<message.length; i++) {
+                                errorMessages += message[i] + "<br />";
+                            }
+
+                            $('#message').html(errorMessages);
+                            document.body.scrollTop = 0; // For Safari
+                            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                        }
+                        // $('#uploaded_image').html(data.uploaded_image);
+                    }
+                }).done(function(){
+                    $("#loader").modal('hide');
+                });
             });
 
         });

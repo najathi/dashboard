@@ -11,3 +11,6 @@
 
 <!-- Signature Pad -->
 <link rel="stylesheet" href="{{ asset('asset') }}/css/signature-pad.css">
+
+<!-- CSS Loader -->
+<link rel="stylesheet" href="{{ asset('asset') }}/css/pure-css-loader.css">

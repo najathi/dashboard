@@ -36,6 +36,9 @@ SLBI is accessible, powerful, and provides tools required for large, robust appl
 - [Optional]: Seed the database<br/>
 **php artisan db:seed**
 
+- Finally Create directories in public folder, such as<br/>
+**media/uploads/**
+
 ## If you have any problem with seed the database
 
 - you need to run in your terminal: <br/>

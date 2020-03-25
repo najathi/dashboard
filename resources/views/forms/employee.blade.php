@@ -5,12 +5,25 @@
 @endsection
 
 @section('content')
+
     <!-- Title -->
     <div class="hk-pg-header" id="employee_form_header">
         <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="align-left"></i></span></span>Employee
-            Form</h4>
+            Details</h4>
     </div>
     <!-- /Title -->
+
+    <!-- CSS Loader -->
+    <div id="pure-css-loader1">
+        <div class="center-pure-css">
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Row -->
     <div class="row">
@@ -18,7 +31,7 @@
 
             <!-- Employee Form Section           -->
             <section class="hk-sec-wrapper" id="employee_form_section">
-                <h5 class="hk-sec-title">Employee Details</h5>
+                <h5 class="hk-sec-title">Employee Form</h5>
                 <p class="mb-25">An employee is an individual who was hired by an employer to do a specific job.</p>
                 <div class="row">
                     <div class="col-sm">
@@ -56,7 +69,8 @@
                                 {!! Form::label('designation_id', 'Designation ') !!} <span
                                     style="font-size: 1rem; color: red; font-weight: bold;"> * </span>
                                 <div class="input-group">
-                                    <input type="hidden" name="area_manager_id" id="area_manager_id" value="{{request()->query('am')}}" />
+                                    <input type="hidden" name="area_manager_id" id="area_manager_id"
+                                           value="{{request()->query('am')}}"/>
                                     {!! Form::select('designation_id', ['' => 'Choose Option']  + $designations, null , ['class' => 'form-control', 'id' => 'designation_id', 'required' => 'required']) !!}
                                 </div>
                             </div>
@@ -137,6 +151,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="pure-css-loader2">
+                            <div class="center-pure-css">
+                                <div class="lds-ring">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             {{ Form::label('sim_card', 'Do you received a sim card from SLBI? ', ['class' => 'control-label mb-10']) }}
@@ -177,21 +201,22 @@
                                                     class="glyphicon glyphicon-file fileinput-exists"></i> <span
                                                     class="fileinput-filename"></span></div>
                                             <span class="input-group-append">
-                        														<span class=" btn btn-primary btn-file"><span
-                                                                                        class="fileinput-new">Select file</span><span
-                                                                                        class="fileinput-exists">Change</span>
-                                                                        {!! Form::file('passport_photo',['required' => 'required', 'id' => 'passport_photo']) !!}
-                                                                        </span>
-                                                                        <a href="#"
-                                                                           class="btn btn-secondary fileinput-exists"
-                                                                           data-dismiss="fileinput">Remove</a>
-                                                                        </span>
+                                                    <span class=" btn btn-primary btn-file"><span
+                                                            class="fileinput-new">Select file</span><span
+                                                            class="fileinput-exists">Change</span>
+                                            {!! Form::file('passport_photo',['required' => 'required', 'id' => 'passport_photo']) !!}
+                                            </span>
+                                            <a href="#"
+                                               class="btn btn-secondary fileinput-exists"
+                                               data-dismiss="fileinput">Remove</a>
+                                            </span>
                                         </div>
                                     </div>
 
                                     <span id="passport_uploaded_image" passport_id=""></span>
 
                                 </div>
+                            </div>
 
 
                         </section>
@@ -207,15 +232,15 @@
                                                 class="glyphicon glyphicon-file fileinput-exists"></i> <span
                                                 class="fileinput-filename"></span></div>
                                         <span class="input-group-append">
-                        														<span class=" btn btn-primary btn-file"><span
-                                                                                        class="fileinput-new">Select file</span><span
-                                                                                        class="fileinput-exists">Change</span>
-                                                                        {!! Form::file('gov_f_photo',['required' => 'required']) !!}
-                                                                        </span>
-                                                                        <a href="#"
-                                                                           class="btn btn-secondary fileinput-exists"
-                                                                           data-dismiss="fileinput">Remove</a>
-                                                                        </span>
+                                                <span class=" btn btn-primary btn-file"><span
+                                                        class="fileinput-new">Select file</span><span
+                                                        class="fileinput-exists">Change</span>
+                                        {!! Form::file('gov_f_photo',['required' => 'required']) !!}
+                                        </span>
+                                        <a href="#"
+                                           class="btn btn-secondary fileinput-exists"
+                                           data-dismiss="fileinput">Remove</a>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -231,15 +256,16 @@
                                                 class="glyphicon glyphicon-file fileinput-exists"></i> <span
                                                 class="fileinput-filename"></span></div>
                                         <span class="input-group-append">
-                        														<span class=" btn btn-primary btn-file"><span
-                                                                                        class="fileinput-new">Select file</span><span
-                                                                                        class="fileinput-exists">Change</span>
-                                                                        {!! Form::file('gov_b_photo',['required' => 'required']) !!}
-                                                                        </span>
-                                                                        <a href="#"
-                                                                           class="btn btn-secondary fileinput-exists"
-                                                                           data-dismiss="fileinput">Remove</a>
-                                                                        </span>
+                                            <span class=" btn btn-primary btn-file"><span
+                                                    class="fileinput-new">Select file</span>
+                                                <span
+                                                    class="fileinput-exists">Change</span>
+                                                {!! Form::file('gov_b_photo',['required' => 'required']) !!}
+                                            </span>
+                                    <a href="#"
+                                       class="btn btn-secondary fileinput-exists"
+                                       data-dismiss="fileinput">Remove</a>
+                                    </span>
                                     </div>
                                 </div>
                             </div>
@@ -258,9 +284,12 @@
 
                                         <div class="signature-pad--actions">
                                             <div>
-                                                <button type="button" class="btn btn-dark clear" data-action="clear">Clear</button>
-<!--                                                <button type="button" class="btn btn-dark" data-action="change-color">Change color</button>-->
-                                                <button type="button" class="btn btn-dark" data-action="undo">Undo</button>
+                                                <button type="button" class="btn btn-dark clear" data-action="clear">
+                                                    Clear
+                                                </button>
+                                                <!--                                                <button type="button" class="btn btn-dark" data-action="change-color">Change color</button>-->
+                                                <button type="button" class="btn btn-dark" data-action="undo">Undo
+                                                </button>
 
                                             </div>
                                             <!--                                                <div>-->
@@ -314,7 +343,7 @@
                             </tr>
                             <tr scope="row">
                                 <th><strong>Parent Link</strong></th>
-                                <td><input type="text" id="parent_link" class="form-control" /></td>
+                                <td><input type="text" id="parent_link" class="form-control"/></td>
                             </tr>
                             </tbody>
                         </table>
@@ -339,14 +368,18 @@
 
             $('#ds_div').hide();
             $('#gn_div').hide();
+            $('#pure-css-loader1').hide();
+            $('#pure-css-loader2').hide();
 
             $("#sim_section").hide();
 
             $('#district_id').on('change', function () {
 
                 var url = '{{ url('json') }}' + '/district/' + $(this).val() + '/divisions/';
+                $('#pure-css-loader2').show();
 
                 $.get(url, function (data) {
+                    $('#pure-css-loader2').hide();
                     $('#dist_div').removeClass('col-md-12');
                     $('#dist_div').addClass('col-md-4');
                     $('#ds_div').show();
@@ -377,34 +410,38 @@
                 }
             });
 
-            $('#employee_form').on('submit', function(e){
+            $('#employee_form').on('submit', function (e) {
                 e.preventDefault();
                 var signUrl = '';
                 var formData = new FormData(this);
                 if (signaturePad.isEmpty()) {
                     alert("Please provide a signature first.");
                 } else {
-                    formData.append('signature',signaturePad.toDataURL("image/svg+xml"));
+                    formData.append('signature', signaturePad.toDataURL("image/svg+xml"));
                 }
 
                 $.ajax({
-                    url:"{{ route('employee.store') }}",
-                    method:"POST",
-                    data:formData,
-                    dataType:'JSON',
+                    url: "{{ route('employee.store') }}",
+                    method: "POST",
+                    data: formData,
+                    dataType: 'JSON',
                     contentType: false,
                     cache: false,
                     processData: false,
-                    success:function(data)
-                    {
+                    beforeSend: function () {
+                        $('#pure-css-loader1').show();
+                    },
+                    success: function (data) {
                         console.log(data);
 
                         if (data.success) {
+                            $('#pure-css-loader1').hide();
                             $('#employee_form_header').remove();
                             $('#employee_form_section').remove();
                         } else {
+                            $('#pure-css-loader1').hide();
                             $('#message').css('display', 'block');
-                            $('#message').removeClass()
+                            $('#message').removeClass();
                             $('#message').addClass("alert");
                             $('#message').addClass(data.class);
                             $('#message').html(data.message);

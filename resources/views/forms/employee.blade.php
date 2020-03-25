@@ -318,7 +318,7 @@
             <!-- End of Employee Form Section            -->
 
             <!-- Employee Success Section           -->
-            <section class="hk-sec-wrapper" id="employee_success_section">
+            <section class="hk-sec-wrapper" id="employee_success_section" style="display: none;">
                 <h5 class="hk-sec-title">Your Resources:</h5>
                 <p class="mb-25 alert alert-success">Your form has been received successfully!
                 <div class="row">
@@ -430,16 +430,18 @@
                     processData: false,
                     beforeSend: function () {
                         $('#pure-css-loader1').show();
+                        $('#employee_form_section').hide();
                     },
                     success: function (data) {
                         console.log(data);
 
                         if (data.success) {
                             $('#pure-css-loader1').hide();
-                            $('#employee_form_header').remove();
                             $('#employee_form_section').remove();
+                            $('#employee_success_section').show();
                         } else {
                             $('#pure-css-loader1').hide();
+                            $('#employee_form_section').show();
                             $('#message').css('display', 'block');
                             $('#message').removeClass();
                             $('#message').addClass("alert");

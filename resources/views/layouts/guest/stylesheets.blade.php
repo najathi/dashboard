@@ -15,6 +15,8 @@
 <!-- CSS Loader -->
 <link rel="stylesheet" href="{{ asset('asset') }}/css/pure-css-loader.css">
 
+<link rel="stylesheet" href="{{ asset('asset') }}/css/general-style.css">
+
 <style type="text/css">
     .loader {
         border: 16px solid #f3f3f3; /* Light grey */
@@ -51,18 +53,5 @@
         /* To center horizontally */
         margin: 0 auto;
         pointer-events: all;
-    }
-
-    #empCodeSpanBtn {
-        padding: 10px;
-        margin: 10px;
-        margin-left: 0.5rem;
-        background: #ccc;
-        cursor: pointer;
-
-    }
-
-    #empCodeSpan{
-        color: #000;
     }
 </style>

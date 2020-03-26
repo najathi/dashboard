@@ -210,14 +210,14 @@ class EmployeesController extends Controller
 
                 if ($input['designation_id'] === '5') {
                     $parent_link = route('employee.index') . '?am=' . $employee->id;
-                    $success_array['table'] = '<tr scope="row"><th><strong>ID Number</strong></th><td><span id="empCodeSpan">' . $empcode . '</span><a id="empCodeSpanBtn"><span class="ti-clipboard"></span></a></td></tr>'
+                    $success_array['table'] = '<tr scope="row"><th><strong>ID Number</strong></th><td>' . $empcode . '</td></tr>'
                         . '<tr scope="row"><th><strong>Parent Link</strong></th><td><input type="text" id="parent_link" class="form-control" value="' . $parent_link . '"></td></tr>'
                         . '<tr scope="row"><th><strong>ID Card</strong></th><td><a target="_blank" href="' . route('employee.index') . '/' . $employee->id . '/id_card">Download</a></td></tr>'
                         . '<tr scope="row"><th><strong>Certificate</strong></th><td><a target="_blank" href="' . route('employee.index') . '/' . $employee->id . '/assign_cert">Download</a></td></tr>'
                         . '<tr scope="row"><th><strong>Visiting Card</strong></th><td><a target="_blank" href="' . route('employee.index') . '/' . $employee->id . '/visit_card">Download</a></td></tr>';
                 } else {
 //                    $success_array['table'] = '<tr scope="row"><th><strong>ID Number</strong></th><td>' . $empcode . '</td></tr>';
-                    $success_array['table'] = '<tr scope="row"><th><strong><span>ID Number</strong></th><td><span id="empCodeSpan">' . $empcode . '</span><a id="empCodeSpanBtn"><span class="ti-clipboard"></span></a></td></tr>'
+                    $success_array['table'] = '<tr scope="row"><th><strong><span>ID Number</strong></th><td>' . $empcode . '</td></tr>'
                         . '<tr scope="row"><th><strong>ID Card</strong></th><td><a target="_blank" href="' . route('employee.index') . '/' . $employee->id . '/id_card">Download</a></td></tr>'
                         . '<tr scope="row"><th><strong>Certificate</strong></th><td><a target="_blank" href="' . route('employee.index') . '/' . $employee->id . '/assign_cert">Download</a></td></tr>'
                         . '<tr scope="row"><th><strong>Visiting Card</strong></th><td><a target="_blank" href="' . route('employee.index') . '/' . $employee->id . '/visit_card">Download</a></td></tr>';

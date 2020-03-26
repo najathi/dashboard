@@ -29,7 +29,7 @@
         <div class="col-xl-12">
 
             <!-- Employee Form Section           -->
-            <section class="hk-sec-wrapper" id="employee_form_section" style="display: none;">
+            <section class="hk-sec-wrapper hiddenItems" id="employee_form_section">
                 <h5 class="hk-sec-title">Employee Form</h5>
                 <p class="mb-25">An employee is an individual who was hired by an employer to do a specific job.</p>
                 <div class="row">
@@ -215,6 +215,7 @@
                                     <span id="passport_uploaded_image" passport_id=""></span>
 
                                 </div>
+                            </div>
 
 
                         </section>
@@ -268,38 +269,41 @@
                             </div>
                         </section>
 
-                        <section class="hk-sec-wrapper">
-                            <h6 class="hk-sec-title">Your Signature<span
-                                    style="font-size: 1rem; color: red; font-weight: bold;"> * </span></h6>
-                            <div class="col-md-12">
-                                <div id="signature-pad" class="signature-pad">
-                                    <div class="signature-pad--body">
-                                        <canvas></canvas>
-                                    </div>
-                                    <div class="signature-pad--footer">
-                                        <div class="description">Sign above</div>
+                        <div id="signaturedivselect">
+                            <section class="hk-sec-wrapper">
+                                <h6 class="hk-sec-title">Your Signature<span
+                                        style="font-size: 1rem; color: red; font-weight: bold;"> * </span></h6>
+                                <div class="col-md-12">
+                                    <div id="signature-pad" class="signature-pad">
+                                        <div class="signature-pad--body">
+                                            <canvas></canvas>
+                                        </div>
+                                        <div class="signature-pad--footer">
+                                            <div class="description">Sign above</div>
 
-                                        <div class="signature-pad--actions">
-                                            <div>
-                                                <button type="button" class="btn btn-dark clear" data-action="clear">
-                                                    Clear
-                                                </button>
-                                                <!--                                                <button type="button" class="btn btn-dark" data-action="change-color">Change color</button>-->
-                                                <button type="button" class="btn btn-dark" data-action="undo">Undo
-                                                </button>
+                                            <div class="signature-pad--actions">
+                                                <div>
+                                                    <button type="button" class="btn btn-dark clear"
+                                                            data-action="clear">
+                                                        Clear
+                                                    </button>
+                                                    <!--                                                <button type="button" class="btn btn-dark" data-action="change-color">Change color</button>-->
+                                                    <button type="button" class="btn btn-dark" data-action="undo">Undo
+                                                    </button>
 
+                                                </div>
+                                                <!--                                                <div>-->
+                                                <!--                                                    <button type="button" class="button save" data-action="save-png">Save as PNG</button>-->
+                                                <!--                                                    <button type="button" class="button save" data-action="save-jpg">Save as JPG</button>-->
+                                                <!--                                                    <button type="button" class="button save" data-action="save-svg">Save as SVG</button>-->
+                                                <!--                                                </div>-->
                                             </div>
-                                            <!--                                                <div>-->
-                                            <!--                                                    <button type="button" class="button save" data-action="save-png">Save as PNG</button>-->
-                                            <!--                                                    <button type="button" class="button save" data-action="save-jpg">Save as JPG</button>-->
-                                            <!--                                                    <button type="button" class="button save" data-action="save-svg">Save as SVG</button>-->
-                                            <!--                                                </div>-->
                                         </div>
                                     </div>
-                                </div>
 
-                            </div>
-                        </section>
+                                </div>
+                            </section>
+                        </div>
 
                         <div style="display: flex; flex-direction: row; justify-content: center; align-items: center">
 
@@ -390,7 +394,7 @@
             $('#gn_div').hide();
             $("#sim_section").hide();
             $('#pure-css-loader1').hide();
-            $('#employee_form_section').show();
+            $('#employee_form_section').removeClass('hiddenItems');
             $('#pure-css-loader2').hide();
 
             $('#district_id').on('change', function () {
@@ -431,14 +435,6 @@
                 }
             });
 
-            $('#empCodeSpanBtn').click(function () {
-                let $temp = $("<input>");
-                $("body").append($temp);
-                $temp.val($("#empCodeSpan").text()).select();
-                document.execCommand("copy");
-                $temp.remove();
-            });
-
             $('#employee_form').on('submit', function (e) {
                 e.preventDefault();
                 var signUrl = '';
@@ -458,11 +454,13 @@
                     cache: false,
                     processData: false,
                     beforeSend: function () {
+                        $(window).scrollTop(0);
                         $('#pure-css-loader1').show();
-                        $('#employee_form_section').hide();
+                        $('#employee_form_section').addClass('hiddenItems');
                     },
                     success: function (data) {
                         console.log(data);
+                        $(window).scrollTop(0);
 
                         if (data.success) {
                             $('#pure-css-loader1').hide();
@@ -474,7 +472,7 @@
 
                         } else {
                             $('#pure-css-loader1').hide();
-                            $('#employee_form_section').show();
+                            $('#employee_form_section').removeClass('hiddenItems');
                             $('#message').css('display', 'block');
                             $('#message').removeClass()
                             $('#message').addClass("alert");
